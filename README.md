@@ -1,3 +1,3 @@
-derived shm equation 
-plotted sine and cosine motions
-studied parameter effects 
+- derived shm equation 
+- plotted sine and cosine motions
+- Studied parameter effects
