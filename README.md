@@ -3,3 +3,4 @@
 - Studied parameter effects
 - plotted Euler method approximation for the solution
 - compared it with the actual solution 
+- done velocity and energy plots for Euler method 
