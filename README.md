@@ -6,3 +6,4 @@
 - done velocity and energy plots for Euler method 
 - introduced damping effect
 - tried different values of b
+- defined a function for Euler method
