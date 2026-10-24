@@ -1,58 +1,73 @@
 # Simple Harmonic Motion: Analytical and Numerical Study
 
-A Jupyter notebook that studies simple harmonic motion (SHM) in Python: first the exact solution, then a numerical solution using the Euler method, and finally the effect of damping.
+A Python-based study of simple harmonic motion (SHM) using analytical solutions and numerical simulations. This project explores the motion of an ideal oscillator, implements the Euler method, compares numerical results with the exact solution, and investigates the effects of damping.
 
-## The Physics
+## 1. The Physics
 
-The equation of motion for a mass on a spring is
+For an ideal mass-spring system, Newton's second law gives the equation of motion:
 
-\[
-\frac{d^2x}{dt^2}=-\omega^2x
-\]
+**Differential equation:**
 
-With \(\omega=1\), the exact solution is \(x(t)=A\cos(t+\phi)\).
+`d²x/dt² = −ω²x`
 
-To solve it numerically, I split it into two first-order equations:
+Here, `x` is the displacement from equilibrium and `ω` is the angular frequency.
 
-\[
-\frac{dx}{dt}=v,\qquad \frac{dv}{dt}=-x
-\]
+For `ω = 1`, the exact solution can be written as:
 
-The Euler method updates them step by step:
+`x(t) = A cos(t + φ)`
+
+where `A` is the amplitude and `φ` is the phase constant.
+
+To solve the equation numerically, we rewrite it as two first-order differential equations:
+
+```text
+dx/dt = v
+dv/dt = −x
+```
+
+## 2. Numerical Method: Euler's Method
+
+Euler's method approximates the evolution of a system by updating its variables in small time steps.
+
+For a time step `dt`, the updates are:
 
 ```python
 x[i+1] = x[i] + v[i] * dt
 v[i+1] = v[i] - x[i] * dt
 ```
 
-## What's in the Notebook
+The numerical solution can then be compared with the exact analytical solution to understand the accuracy and limitations of the method.
 
-- Derivation of the SHM equation
-- Sine and cosine solutions, and how parameters change them
-- Euler method implementation using a reusable `simulate()` function
-- Comparison of the Euler result with the exact solution
-- Velocity and energy plots
-- Damped oscillator simulations with different damping values `b`
+## 3. What's in the Notebook
 
-## Key Finding
+- Derivation and exploration of the simple harmonic motion equation
+- Sine and cosine solutions and the effects of changing their parameters
+- Numerical simulation using Euler's method
+- A reusable `simulate()` function
+- Comparison between numerical and analytical solutions
+- Position, velocity, and energy plots
+- Damped oscillator simulations for different damping values
 
-The Euler method does not conserve energy. In the position-versus-time plot, the amplitude gradually grows even though the exact solution has constant amplitude. This is numerical error: each Euler step introduces a small error that accumulates over time. A smaller time step `dt` can reduce the error, but the standard Euler method still exhibits energy drift.
+## 4. Key Observation
 
-## How to Run
+The standard Euler method does not conserve the total mechanical energy of an ideal harmonic oscillator.
 
-Install the required packages:
+For typical initial conditions, the numerical solution may show a gradual increase in amplitude and energy over time, even though the exact solution maintains constant amplitude and energy.
+
+This behaviour arises from the numerical error introduced at each time step. The accumulated error depends on the time step and the duration of the simulation.
+
+Comparing numerical results with the analytical solution helps illustrate why the choice of numerical integration method matters when simulating physical systems.
+
+## 5. How to Run
+
+### Requirements
+
+- Python 3
+- NumPy
+- Matplotlib
+- Jupyter Notebook
+
+Install the required packages using:
 
 ```bash
-pip install numpy matplotlib jupyter
-```
-
-Then launch Jupyter Notebook:
-
-```bash
-jupyter notebook shmproject.ipynb
-```
-
-## Next Steps
-
-- Implement symplectic Euler and RK4 and compare their energy behaviour
-- Extend `simulate()` to accept `omega` and total simulation time as parameters
+pip install
